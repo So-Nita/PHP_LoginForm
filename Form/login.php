@@ -8,7 +8,7 @@
         $password = $_POST['userPassword'];
 
         if(empty($name) || empty($password) || is_numeric($username)){
-            echo("Invalid");
+            echo("Invalid...");
 
         }else{
             $query = "SELECT * FROM user WHERE name = '$name' limit 1";
