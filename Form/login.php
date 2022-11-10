@@ -6,10 +6,11 @@
     if($_SERVER['REQUEST_METHOD']=="POST"){
         $name = $_POST['userName'];
         $password = $_POST['userPassword'];
+        
+        
 
         if(empty($name) || empty($password) || is_numeric($username)){
             echo("Invalid...");
-
         }else{
             $query = "SELECT * FROM user WHERE name = '$name' limit 1";
             $result = mysqli_query($connect, $query);
@@ -18,7 +19,11 @@
                 $user_data = mysqli_fetch_assoc($result);
                 // print_r($user_data);
                 if($user_data['password'] === $password){
-                    $_SESSION['userName'] = $name;
+                    $_SESSION['User'] = $name;
+                    $cookie_name = $name;
+                    $cookie_value = $password;
+                    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+                   
                     header("location: indexpage.php");
                 }else{
                     echo("wrong password...");
@@ -28,8 +33,8 @@
             }
         }
     }
-    $valname = validateName($_POST["userName"]);
-    $valpass = validatePassword($_POST["userPassword"]);
+    $valname = validateName(isset($_POST["userName"]) ? $_POST['userName']: null);
+    $valpass = validatePassword(isset($_POST["userPassword"]) ? $_POST['userPassword'] : null);
 ?>
 
 <!DOCTYPE html>

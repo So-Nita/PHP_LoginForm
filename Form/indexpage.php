@@ -1,7 +1,7 @@
 <?php
     session_start();
         include './connectDatabase.php';
-        if(!isset($_SESSION['userName'])){
+        if(!isset($_SESSION['User'])){
             header("location: login.php");
         }
        

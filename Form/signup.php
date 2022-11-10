@@ -17,9 +17,10 @@
             die;
         }
     }
-    $valName = validateName($_POST["myName"]);
-    $valEmail = validateEmail($_POST["myEmail"]);
-    $valPass = validatePassword($_POST["myPassword"]);
+
+    $valName = validateName(isset($_POST["myName"]) ? $_POST["myName"] : null);
+    $valEmail = validateEmail(isset($_POST["myEmail"]) ? $_POST["myEmail"] : null);
+    $valPass = validatePassword(isset($_POST["myPassword"]) ? $_POST["myPassword"] : null);
 
 ?>
 
