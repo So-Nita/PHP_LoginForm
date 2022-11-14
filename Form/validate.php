@@ -6,7 +6,7 @@
                 return "Name is required";
             }
             else{
-                return("");
+                test_input($valName);
             }
         }
     }
@@ -16,7 +16,7 @@
                 return "Email is required";
             }
             else{
-                return("");
+                return null;
             }
         }
     }
@@ -25,9 +25,19 @@
             if(empty($valPassword)){
                 return "Password is required";
             }
+            elseif($valPassword<4){
+                return "Password must be more than 4";
+            }
             else{
-                return("");
+                test_input($valPassword);
             }
         }
+    }
+
+    function test_input($input){
+        $input = trim($input);
+        $input = stripslashes($input);
+        $input = htmlspecialchars($input);
+        return $input;
     }
      

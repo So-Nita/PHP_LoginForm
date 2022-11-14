@@ -7,8 +7,6 @@
         $name = $_POST['userName'];
         $password = $_POST['userPassword'];
         
-        
-
         if(empty($name) || empty($password) || is_numeric($username)){
             echo("Invalid...");
         }else{
@@ -23,13 +21,12 @@
                     $cookie_name = $name;
                     $cookie_value = $password;
                     setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
-                   
                     header("location: indexpage.php");
                 }else{
                     echo("wrong password...");
                 }
             }else{
-                header("location: login.php");
+                // header("location: login.php");
             }
         }
     }
@@ -39,10 +36,11 @@
 
 <!DOCTYPE html>
 <html>
+    <head><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></head>
     <body>
-        <div class="content" style="width: 400px; margin: auto; background: #f5f5f5;">
+        <div class="d-flex justify-content-center align-center h-auto" style="width: 400px; margin: auto; background: #f5f5f5;">
             <form method="post">
-                <h3>Login</h3>
+                <br><h3 class="text-center">Login</h3><br>
                 <div>
                     <label >Username:</label>
                     <input type="text" name="userName">
@@ -53,14 +51,19 @@
                     <input type="password" name="userPassword">
                     <span class="color"><?php echo($valpass) ?></span>
                 </div><br>
-                <a href="./signup.php">Sign Up</a>
-                <span>  Or</span>
-                <a href="">Forgot Password</a><br><br>
-                <input type="submit" name="submit">
+                <div class="text-center">
+                    <a href="./signup.php">Sign Up</a>
+                </div><br>
+                <div class="d-flex justify-content-center">
+                    <input class="btn btn-primary" type="submit" name="submit">
+                </div><br>
             </form>
         </div>
     </body>
     <style>
         .color{color: red;}
+        input:focus{
+            outline: none;
+        }
     </style>
 </html>
